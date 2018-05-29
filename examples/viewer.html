@@ -58,19 +58,25 @@
 		});
 		
 		// Load and add point cloud to scene
-		Potree.loadPointCloud("../pointclouds/vol_total/cloud.js", "sigeom.sa", e => {
-			let scene = viewer.scene;
-			let pointcloud = e.pointcloud;
+		Potree.loadPointCloud("https://s3.amazonaws.com/cm-persistent/005f4058214ac90fd121963da5b6ab6689122af0/octrees/20180511.034342245/cloud.js", "sigeom.sa", e => {
+			// let scene = viewer.scene;
+			// let pointcloud = e.pointcloud;
 			
-			let material = pointcloud.material;
-			material.size = 1;
-			material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
-			material.shape = Potree.PointShape.SQUARE;
+			// let material = pointcloud.material;
+			// material.size = 1;
+			// material.pointSizeType = Potree.PointSizeType.ADAPTIVE;
+			// material.shape = Potree.PointShape.SQUARE;
 			
-			scene.addPointCloud(pointcloud);
+			// scene.addPointCloud(pointcloud);
 			
-			//scene.view.position.set(589974.341, 231698.397, 986.146);
-			//scene.view.lookAt(new THREE.Vector3(589851.587, 231428.213, 715.634));
+			// //scene.view.position.set(589974.341, 231698.397, 986.146);
+			// //scene.view.lookAt(new THREE.Vector3(589851.587, 231428.213, 715.634));
+			//  viewer.fitToScreen();
+
+			camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1000 );
+			controls = new THREE.PointerLockControls( camera );
+			scene.add( controls.getObject() );
+			
 			 viewer.fitToScreen();
 		});
 		
